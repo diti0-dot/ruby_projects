@@ -1,29 +1,28 @@
-def caesar_cipher
-  puts "Give a sentence"
-  string = gets.chomp  
 
-  puts "Give a number for shift"
-  num = gets.chomp.to_i  
 
-  puts "string: '#{string}' shift: #{num}"
-
-  shifted = "" 
-
-  string.each_char do |char|
-    if char =~ /[A-Za-z]/
-      if char =~ /[A-Z]/
-        base = 65
-      elsif char =~ /[a-z]/
-        base = 97
-      end
-      shifted_char = ((char.ord - base + num) % 26 + base).chr
-      shifted += shifted_char
-    else
-      shifted += char
-    end  
-  end
-
-  puts "Shifted sentence: #{shifted}" 
-end
+def caesar_cipher(word = "Cat", key = 5)
+      splitted = word.split("")
+      
+      result = ""
+      
+      
+      splitted.each do |i| 
+        if i == i.upcase 
+       
+         result += ( (i.ord + key - 65)%26+65).chr
+          
+        elsif i == i.downcase
+          result+= ((i.ord  + key - 97)%26+97).chr
+         
+        else 
+          puts "idk"
+           result += i
+        end 
+       end 
+       
+        puts "original: #{word}"
+        puts "caesar version:" + result 
+      
+end 
 
 caesar_cipher
