@@ -1,18 +1,21 @@
-def stock_picker(stock_prices)
-  g_profit = 0 #great profit
-  best_days ="" #its today :)
-  stock_prices.each_with_index do | buy_price, buy_day|
-    stock_prices.each_with_index do |sell_price, sell_day |
-      profit = sell_price - buy_price
+stock_picker = [17,3,6,9,15,8,6,1,10]
+#[1,4]  # for a profit of $15 - $3 == $12
 
-      if profit > g_profit && buy_day < sell_day
-        g_profit = profit
-        best_days = [buy_day, sell_day]
-      end 
+def picker(stock_picker)
+ temp_profit = 0 
+ profit = ""
+  for buy_rate in 0...stock_picker.length
+    for sell_rate in (buy_rate+1)...stock_picker.length
+
+        profit = stock_picker[sell_rate] - stock_picker[buy_rate]
+        
+        if profit > temp_profit
+          temp_profit = profit
+          best_prices = [buy_rate,sell_rate]
+        end
     end
   end
-  return best_days
+  return best_prices
 end
 
-stock_prices = [17, 3, 6, 9, 15, 8, 6, 1, 10]
-puts stock_picker(stock_prices).inspect
+puts picker(stock_picker).inspect 
